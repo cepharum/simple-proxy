@@ -13,7 +13,7 @@ Installation works without elevated privileges. On Unix, Linux and OS X you may
 _install_ simple-proxy like this:
 
 	cd ~
-    curl http://git.io/n-install | bash
+    curl -L http://git.io/n-install | bash
     git clone https://github.com/cepharum/simple-proxy.git
 
 ## Daemon Control
