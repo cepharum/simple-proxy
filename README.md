@@ -22,9 +22,20 @@ _install_ simple-proxy like this:
 
     node simple-proxy/main.js start
     
+Proxy is listening on port `8080` by default. You may choose different one using
+argument:
+
+    node simple-proxy/main.js start --port=5432
+
 ### Stopping
 
     node simple-proxy/main.js stop
+    
+This will send `SIGHUP` to daemon given in PID file. If PID file is orphan or if
+daemon does not shut down on `SIGHUP` you may use force to kill the process and
+remove any PID file.
+
+    node simple-proxy/main.js stop --force
 
 ### Checking
 
