@@ -26,6 +26,8 @@
  * @author: cepharum
  */
 
+process.on( "exit", proxyShutdown );
+
 const http = require( "http" ),
       net  = require( "net" ),
       url  = require( "url" );
@@ -38,7 +40,9 @@ var proxy = http.createServer( localQuery );
 proxy.on( "connect", proxyQuery );
 proxy.listen( args.options.port || 8080 );
 
-process.on( "exit", proxyShutdown );
+process.on( "SIGINT", function() {
+	proxy.close();
+} );
 
 
 function localQuery( req, res ) {
