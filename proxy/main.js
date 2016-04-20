@@ -36,8 +36,9 @@ const pidFile = require( "./../lib/pidfile" ),
 
 var proxy = http.createServer( localQuery );
 proxy.on( "connect", proxyQuery );
-proxy.on( "close", proxyShutdown );
 proxy.listen( args.options.port || 8080 );
+
+process.on( "beforeExit", proxyShutdown );
 
 
 function localQuery( req, res ) {
@@ -86,5 +87,5 @@ function success( res ) {
 }
 
 function proxyShutdown() {
-	pidFile.removePid( args )
+	pidFile.removePid( args );
 }
