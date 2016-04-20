@@ -38,7 +38,7 @@ var proxy = http.createServer( localQuery );
 proxy.on( "connect", proxyQuery );
 proxy.listen( args.options.port || 8080 );
 
-process.on( "beforeExit", proxyShutdown );
+process.on( "exit", proxyShutdown );
 
 
 function localQuery( req, res ) {
@@ -87,5 +87,5 @@ function success( res ) {
 }
 
 function proxyShutdown() {
-	pidFile.removePid( args );
+	pidFile.dropPid( args );
 }
